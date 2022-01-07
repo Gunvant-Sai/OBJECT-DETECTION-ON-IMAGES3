@@ -1,8 +1,7 @@
-
-
 img="";
 status_="";
-object="";
+object1="";
+object=[];
 
 function setup()
 {
@@ -31,11 +30,13 @@ function gotresult(error,result)
 function preload()
 {
     img = loadImage("SOFAIMAGE.jpg");
+    object1 = ml5.objectDetector('cocossd', modelLoaded);
 }
 
 function draw()
 {
     image(img,0,0,580,500);
+    object1.detect(img,gotresult);
     if(status_ != "")
     {
       for(i= 0; i < object.length; i++)
